@@ -2,13 +2,13 @@
 
 namespace Dcat\EasyExcel\Traits;
 
-use Box\Spout\Common\Entity\Style\Style;
-use Box\Spout\Common\Type;
-use Box\Spout\Reader\CSV\Reader as CSVReader;
-use Box\Spout\Writer\CSV\Writer as CSVWriter;
+use OpenSpout\Common\Entity\Style\Style;
+use OpenSpout\Common\Type;
+use OpenSpout\Reader\CSV\Reader as CSVReader;
+use OpenSpout\Writer\CSV\Writer as CSVWriter;
 use Dcat\EasyExcel\Support\SheetCollection;
-use Illuminate\Contracts\Filesystem\Filesystem as LaravelFilesystem;
-use Illuminate\Support\Facades\Storage;
+use yzh52521\filesystem\Filesystem as ThinkFilesystem;
+use yzh52521\filesystem\facade\Filesystem;
 use League\Flysystem\FilesystemInterface;
 use League\Flysystem\FilesystemOperator;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -143,16 +143,16 @@ trait Excel
     }
 
     /**
-     * @param  FilesystemInterface|FilesystemOperator|LaravelFilesystem|string  $filesystem
+     * @param  FilesystemInterface|FilesystemOperator|ThinkFilesystem|string  $filesystem
      * @return $this
      */
     public function disk($filesystem)
     {
         if (is_string($filesystem)) {
-            $filesystem = Storage::disk($filesystem);
+            $filesystem = Filesystem::disk($filesystem)->getDriver();
         }
 
-        if ($filesystem instanceof LaravelFilesystem) {
+        if ($filesystem instanceof ThinkFilesystem) {
             $filesystem = $filesystem->getDriver();
         }
 
@@ -196,7 +196,7 @@ trait Excel
     }
 
     /**
-     * @param  \Box\Spout\Reader\ReaderInterface|\Box\Spout\Writer\WriterInterface  $readerOrWriter
+     * @param  \OpenSpout\Reader\ReaderInterface|\OpenSpout\Writer\WriterInterface  $readerOrWriter
      */
     protected function configure(&$readerOrWriter)
     {

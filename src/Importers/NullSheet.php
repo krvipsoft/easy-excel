@@ -2,11 +2,11 @@
 
 namespace Dcat\EasyExcel\Importers;
 
-use Box\Spout\Reader\SheetInterface;
-use Dcat\EasyExcel\Contracts;
+use OpenSpout\Reader\SheetInterface;
+use Dcat\EasyExcel\Contracts\Sheet;
 use Dcat\EasyExcel\Support\SheetCollection;
 
-class NullSheet implements Contracts\Sheet
+class NullSheet implements Sheet
 {
     /**
      * @return bool
@@ -92,5 +92,10 @@ class NullSheet implements Contracts\Sheet
     public function collect(): SheetCollection
     {
         return new SheetCollection($this->toArray());
+    }
+
+    public function getOriginalHeadings()
+    {
+        // TODO: Implement getOriginalHeadings() method.
     }
 }
