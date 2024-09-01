@@ -1,5 +1,5 @@
 {
-  "name": "dcat/easy-excel",
+  "name": "kfteam1991/easy-excel",
   "description": "使用简单实用的语义化接口快速读写Excel文件",
   "type": "library",
   "keywords": [
@@ -15,16 +15,16 @@
     "stream"
   ],
   "license": "MIT",
-  "homepage": "https://github.com/jqhph/easy-excel",
+  "homepage": "https://github.com/kfteam1991/easy-excel",
   "authors": [
     {
-      "name": "jqh",
-      "email": "841324345@qq.com"
+      "name": "kfteam1991",
+      "email": "kfteam1991@gmail.com"
     }
   ],
   "require": {
     "php": ">=7.1.0",
-    "box/spout": "~3",
+    "openspout/openspout": "~v3.7.4",
     "league/flysystem": "~1|~2|~3"
   },
   "require-dev": {
